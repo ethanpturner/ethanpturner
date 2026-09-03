@@ -17,8 +17,8 @@ three-valued verdict — `verified`, `contradicted`, `unverifiable` — and neve
 | | Domain | Status |
 |---|---|---|
 | **[trace](https://github.com/ethanpturner/trace)** | Security architecture review | Pipeline runs end to end; evaluation harness with authored truth sets |
-| **[whence](https://github.com/ethanpturner/whence)** | Model supply chain | Phase one runs — resolution and CycloneDX ML-BOM |
-| **[tearline](https://github.com/ethanpturner/tearline)** | Retrieval entitlements | Design and an eight-scenario benchmark corpus; implementation not started |
+| **[whence](https://github.com/ethanpturner/whence)** | Model supply chain | Runs — resolution, signature state, and a CycloneDX 1.7 ML-BOM |
+| **[tearline](https://github.com/ethanpturner/tearline)** | Retrieval entitlements | Runs — offline against eight scenarios, and against live pgvector and Qdrant |
 | **[attestrun](https://github.com/ethanpturner/attestrun)** | Evaluation attestation | Minimal implementation runs |
 
 ### trace
@@ -41,9 +41,11 @@ captures a live case where a widely-declared base reference redirects into an or
 controlled by someone else, and file requests under the old path are served from the new namespace
 with no error.
 
-Every edge it currently emits is `unverifiable`. That is the finding, not a defect — cards name a
-base and stop, so resolution establishes that the named artifact exists and can be pinned, never
-that the derivation happened.
+No edge is ever `verified`. That is the finding, not a defect — cards name a base and stop, so
+resolution establishes that the named artifact exists and can be pinned, never that the derivation
+happened. The structural check is the only thing that can say otherwise, and it can only
+*contradict*: a transformer body that does not match the declared base disproves the claim, while
+one that matches is a necessary condition and not a sufficient one.
 
 ### tearline
 
@@ -57,6 +59,12 @@ It measures **under-retrieval** alongside leaks. Where filtering runs after an a
 nearest-neighbour scan, a selective policy can return nothing while matching content exists:
 confidentiality holds, completeness fails silently, and the generation step answers anyway from
 parametric memory. A leak-only verifier scores that system as perfectly secure.
+
+It has no entitlement predicate of its own. Systems combine tenant, roles and direct grants
+differently, and a tool that hardcodes one reports its own wrong assumption as confident findings
+about the index — so the rule is stated by the target and a missing one is an error rather than a
+default. It also writes nothing to anything it touches, which is structural rather than promised:
+the adapters contain no write path, and a test fails if one reappears.
 
 ### attestrun
 
