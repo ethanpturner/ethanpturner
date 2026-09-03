@@ -18,8 +18,8 @@ three-valued verdict — `verified`, `contradicted`, `unverifiable` — and neve
 |---|---|---|
 | **[trace](https://github.com/ethanpturner/trace)** | Security architecture review | Pipeline runs end to end; evaluation harness with authored truth sets |
 | **[whence](https://github.com/ethanpturner/whence)** | Model supply chain | Phase one runs — resolution and CycloneDX ML-BOM |
-| **[tearline](https://github.com/ethanpturner/tearline)** | Retrieval entitlements | Design and benchmark corpus; implementation not started |
-| **attestrun** | Evaluation attestation | Not started |
+| **[tearline](https://github.com/ethanpturner/tearline)** | Retrieval entitlements | Design and an eight-scenario benchmark corpus; implementation not started |
+| **[attestrun](https://github.com/ethanpturner/attestrun)** | Evaluation attestation | Minimal implementation runs |
 
 ### trace
 
@@ -57,6 +57,21 @@ It measures **under-retrieval** alongside leaks. Where filtering runs after an a
 nearest-neighbour scan, a selective policy can return nothing while matching content exists:
 confidentiality holds, completeness fails silently, and the generation step answers anyway from
 parametric memory. A leak-only verifier scores that system as perfectly secure.
+
+### attestrun
+
+Binds an evaluation run's inputs and result into a manifest and re-derives the claim offline.
+Published AI-security results are largely not checkable: corpora are unversioned, scaffolding is
+undescribed, and re-running costs money and drifts when a provider moves a model behind a stable
+name. Across forty agent-safety benchmarks there is no ranking concordance — they reach
+contradictory conclusions about the same systems.
+
+The first thing it attested was a real `whence evaluate` run rather than a fixture.
+
+Its own first use produced its most useful decision. A stale bytecode cache survived a `git
+checkout`, so the source was correct, the working tree was clean, every attested digest matched, and
+the command produced different output. No input set can be complete, so the tool states that its
+coverage is bounded by what it was told to digest, and re-executes by default.
 
 ### How they are built
 
