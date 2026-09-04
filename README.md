@@ -17,7 +17,7 @@ three-valued verdict — `verified`, `contradicted`, `unverifiable` — and neve
 | | Domain | Status |
 |---|---|---|
 | **[trace](https://github.com/ethanpturner/trace)** | Security architecture review | Pipeline runs end to end; evaluation harness with authored truth sets |
-| **[whence](https://github.com/ethanpturner/whence)** | Model supply chain | Runs — resolution, signature state, and a CycloneDX 1.7 ML-BOM |
+| **[whence](https://github.com/ethanpturner/whence)** | Model supply chain | Runs — ten live-captured scenarios, resolution, and a CycloneDX 1.7 ML-BOM |
 | **[tearline](https://github.com/ethanpturner/tearline)** | Retrieval entitlements | Runs — offline against eight scenarios, and against live pgvector and Qdrant |
 | **[attestrun](https://github.com/ethanpturner/attestrun)** | Evaluation attestation | Minimal implementation runs |
 
