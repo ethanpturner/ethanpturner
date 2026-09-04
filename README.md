@@ -55,6 +55,11 @@ since ingestion, and that retrieval under one identity never returns what only a
 OWASP's RAG Security Cheat Sheet prescribes per-chunk access-control metadata, signed source
 attribution, and regular cross-tenant testing, and names no tool for any of them.
 
+Precision is measured over a negative set derived from the corpus — every chunk the truth sets do
+not name as a fault, and every probe row they mark clean — rather than over the handful an author
+thought to write down. 74 subjects, zero false positives, and the figure is quoted with its
+denominator because 0 of 3 and 0 of 74 are the same number and not the same evidence.
+
 It measures **under-retrieval** alongside leaks. Where filtering runs after an approximate
 nearest-neighbour scan, a selective policy can return nothing while matching content exists:
 confidentiality holds, completeness fails silently, and the generation step answers anyway from
